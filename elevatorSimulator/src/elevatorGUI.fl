@@ -1,0 +1,295 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0308
+header_name {.h}
+code_name {.cxx}
+decl {\#include "elevator.h"} {public global
+}
+
+decl {\#include "events.h"} {public global
+}
+
+decl {\#include <string>} {public global
+}
+
+class UserInterfaceElevator {open
+} {
+  Function {make_window()} {open
+  } {
+    Fl_Window {} {
+      label elevatorSimulator open
+      xywh {774 92 1070 375} type Double visible
+    } {
+      Fl_Pack {} {
+        label {Current Floor} open
+        xywh {280 25 80 65} box BORDER_FRAME
+      } {
+        Fl_Round_Button currentFloor4 {
+          label 4
+          xywh {285 30 70 20} down_box ROUND_DOWN_BOX
+        }
+        Fl_Round_Button currentFloor3 {
+          label 3
+          xywh {285 50 70 20} down_box ROUND_DOWN_BOX
+        }
+        Fl_Round_Button currentFloor2 {
+          label 2
+          xywh {285 70 70 20} down_box ROUND_DOWN_BOX
+        }
+      }
+      Fl_Group {} {
+        label Power open
+        xywh {440 25 135 125}
+      } {
+        Fl_Output timeBox {
+          label { }
+          xywh {480 67 70 28} box FLAT_BOX
+        }
+        Fl_Button powerButton {
+          label null
+          callback {if (power_status())
+{
+     power_off();
+}
+else
+{
+   power_on();
+}}
+          xywh {475 25 70 35}
+        }
+        Fl_Check_Button {} {
+          label {obstruct door}
+          callback {door_obstructed(o->value());}
+          xywh {440 110 70 20} down_box DOWN_BOX
+        }
+      }
+      Fl_Pack {} {
+        label {Cab Position} open
+        xywh {280 120 45 240} box BORDER_FRAME
+      } {
+        Fl_Round_Button pos40 {
+          label 4
+          xywh {280 125 45 20} down_box ROUND_DOWN_BOX
+        }
+        Fl_Round_Button pos38 {
+          xywh {280 145 45 20} down_box ROUND_DOWN_BOX
+        }
+        Fl_Round_Button pos36 {
+          xywh {280 165 45 20} down_box ROUND_DOWN_BOX
+        }
+        Fl_Round_Button pos34 {
+          xywh {280 185 45 20} down_box ROUND_DOWN_BOX
+        }
+        Fl_Round_Button pos32 {
+          xywh {280 205 45 20} box BORDER_FRAME down_box ROUND_DOWN_BOX
+        }
+        Fl_Round_Button pos30 {
+          label 3
+          xywh {280 225 45 20} down_box ROUND_DOWN_BOX
+        }
+        Fl_Round_Button pos28 {
+          xywh {280 245 45 20} down_box ROUND_DOWN_BOX
+        }
+        Fl_Round_Button pos26 {
+          xywh {280 265 45 20} down_box ROUND_DOWN_BOX
+        }
+        Fl_Round_Button pos24 {
+          xywh {280 285 45 20} down_box ROUND_DOWN_BOX
+        }
+        Fl_Round_Button pos22 {
+          xywh {280 305 45 20} down_box ROUND_DOWN_BOX
+        }
+        Fl_Round_Button pos20 {
+          label 2
+          xywh {280 325 45 20} down_box ROUND_DOWN_BOX
+        }
+      }
+      Fl_Group {} {
+        label {Elevator Cab} open
+        xywh {770 130 275 460} box BORDER_FRAME
+      } {
+        Fl_Group {} {
+          label CAB_POS_X open
+          xywh {810 155 185 25} align 4
+        } {
+          Fl_Round_Button GUI_CAB_POS_2 {
+            label 2
+            xywh {815 160 70 20} down_box ROUND_DOWN_BOX
+          }
+          Fl_Round_Button GUI_CAB_POS_3 {
+            label 3
+            xywh {870 160 70 20} down_box ROUND_DOWN_BOX
+          }
+          Fl_Round_Button GUI_CAB_POS_4 {
+            label 4
+            xywh {925 160 70 20} down_box ROUND_DOWN_BOX
+          }
+        }
+        Fl_Group {} {
+          label {CALL BUTTONS} open
+          xywh {800 195 225 25} align 4
+        } {
+          Fl_Button GUI_REQ_FLOOR_2 {
+            label 2
+            callback {eventEnum event;
+event=REQ_FLOOR_2;
+event_to_controller(event);}
+            xywh {800 197 70 20}
+          }
+          Fl_Button GUI_REQ_FLOOR_3 {
+            label 3
+            callback {eventEnum event;
+event=REQ_FLOOR_3;
+event_to_controller(event);}
+            xywh {875 197 70 20}
+          }
+          Fl_Button GUI_REQ_FLOOR_4 {
+            label 4
+            callback {eventEnum event;
+event=REQ_FLOOR_4;
+event_to_controller(event);}
+            xywh {955 197 70 20}
+          }
+        }
+        Fl_Group {} {
+          label REQ_FLOOR_ACCEPTED_X open
+          xywh {805 236 225 34} align 4
+        } {
+          Fl_Output GUI_REQ_FLOOR_ACCEPTED_2 {
+            label 2
+            xywh {850 241 15 28}
+          }
+          Fl_Output GUI_REQ_FLOOR_ACCEPTED_3 {
+            label 3
+            xywh {935 242 15 28}
+          }
+          Fl_Output GUI_REQ_FLOOR_ACCEPTED_4 {
+            label 4
+            xywh {1010 242 15 26}
+          }
+        }
+        Fl_Group {} {
+          label {Door Position} open
+          xywh {795 280 235 50} align 4
+        } {
+          Fl_Progress GUI_DOOR_POSITION {
+            label { }
+            xywh {830 291 130 24}
+          }
+        }
+        Fl_Button {} {
+          label DOOR
+          callback {eventEnum event;
+          event=REQ_DOOR_OPEN;
+          event_to_controller(event);}
+          xywh {975 295 70 20}
+        }
+        Fl_Light_Button {} {
+          label BELL selected
+          xywh {835 335 74 20}
+        }
+      }
+      Fl_Group {} {
+        label {FLOOR 2} open
+        xywh {25 37 145 48}
+      } {
+        Fl_Light_Button GUI_CALL_ACCEPTED_FLOOR_2 {
+          label CALL
+          callback {eventEnum event;
+event=REQ_FLOOR_2;
+event_to_controller(event);}
+          xywh {30 51 74 20}
+        }
+        Fl_Output GUI_UPPTAGEN_FLOOR_2 {
+          label BUSY
+          xywh {155 47 15 28}
+        }
+      }
+      Fl_Group {} {
+        label {FLOOR 3} open
+        xywh {25 97 145 48}
+      } {
+        Fl_Light_Button GUI_CALL_ACCEPTED_FLOOR_3 {
+          label CALL
+          callback {eventEnum event;
+event=REQ_FLOOR_3;
+event_to_controller(event);}
+          xywh {30 111 74 20}
+        }
+        Fl_Output GUI_UPPTAGEN_FLOOR_3 {
+          label BUSY
+          xywh {155 107 15 28}
+        }
+      }
+      Fl_Group {} {
+        label {FLOOR 4} open
+        xywh {25 157 145 48}
+      } {
+        Fl_Light_Button GUI_CALL_ACCEPTED_FLOOR_4 {
+          label CALL
+          callback {eventEnum event;
+event=REQ_FLOOR_4;
+event_to_controller(event);}
+          xywh {30 171 74 20}
+        }
+        Fl_Output GUI_UPPTAGEN_FLOOR_4 {
+          label BUSY
+          xywh {155 167 15 28}
+        }
+      }
+    }
+  }
+  Function {guiTick()} {open return_type void
+  } {
+    codeblock {if (power_status()) powerButton->label("ON"); else powerButton->label("OFF");} {} {}
+    code {// fetch the current indicators from the elevator
+unsigned int ind = indicators(); 
+(ind & CAB_POS_2) ? GUI_CAB_POS_2->value(true):GUI_CAB_POS_2->value(false);
+(ind & CAB_POS_3) ? GUI_CAB_POS_3->value(true):GUI_CAB_POS_3->value(false);
+(ind & CAB_POS_4) ? GUI_CAB_POS_4->value(true):GUI_CAB_POS_4->value(false);
+//
+(ind & REQ_FLOOR_ACCEPTED_2) ? GUI_REQ_FLOOR_ACCEPTED_2->value("+"):GUI_REQ_FLOOR_ACCEPTED_2->value("");
+(ind & REQ_FLOOR_ACCEPTED_3) ? GUI_REQ_FLOOR_ACCEPTED_3->value("+"):GUI_REQ_FLOOR_ACCEPTED_3->value("");
+(ind & REQ_FLOOR_ACCEPTED_4) ? GUI_REQ_FLOOR_ACCEPTED_4->value("+"):GUI_REQ_FLOOR_ACCEPTED_4->value("");
+//
+(ind & CALL_ACCEPTED_FLOOR_2) ? GUI_CALL_ACCEPTED_FLOOR_2->set(): GUI_CALL_ACCEPTED_FLOOR_2->clear();
+(ind & CALL_ACCEPTED_FLOOR_3) ? GUI_CALL_ACCEPTED_FLOOR_3->set(): GUI_CALL_ACCEPTED_FLOOR_3->clear();
+(ind & CALL_ACCEPTED_FLOOR_4) ? GUI_CALL_ACCEPTED_FLOOR_4->set(): GUI_CALL_ACCEPTED_FLOOR_4->clear();
+//
+(ind & UPPTAGEN_FLOOR_2) ? GUI_UPPTAGEN_FLOOR_2->value("+"):GUI_UPPTAGEN_FLOOR_2->value("");
+(ind & UPPTAGEN_FLOOR_3) ? GUI_UPPTAGEN_FLOOR_3->value("+"):GUI_UPPTAGEN_FLOOR_3->value("");
+(ind & UPPTAGEN_FLOOR_4) ? GUI_UPPTAGEN_FLOOR_4->value("+"):GUI_UPPTAGEN_FLOOR_4->value("");
+//
+ GUI_DOOR_POSITION->minimum(1);
+ GUI_DOOR_POSITION->maximum(5);
+ GUI_DOOR_POSITION->value(door_position());
+// 
+(ind & POS_FLOOR_2) ? currentFloor2->value(1):currentFloor2->value(0); 
+(ind & POS_FLOOR_3) ? currentFloor3->value(1):currentFloor3->value(0);
+(ind & POS_FLOOR_4) ? currentFloor4->value(1):currentFloor4->value(0);
+//
+pos20->value(0);
+pos22->value(0);
+pos24->value(0);
+pos26->value(0);
+pos28->value(0);
+pos30->value(0);
+pos32->value(0);
+pos34->value(0);
+pos36->value(0);
+pos38->value(0);
+pos40->value(0);
+if (cab_position()==20) pos20->value(1);
+if (cab_position()==22) pos22->value(1);
+if (cab_position()==24) pos24->value(1);
+if (cab_position()==26) pos26->value(1);
+if (cab_position()==28) pos28->value(1);
+if (cab_position()==30) pos30->value(1);
+if (cab_position()==32) pos32->value(1);
+if (cab_position()==34) pos34->value(1);
+if (cab_position()==36) pos36->value(1);
+if (cab_position()==38) pos38->value(1);
+if (cab_position()==40) pos40->value(1);
+//
+timeBox->value(std::to_string(timeInSeconds()).c_str());} {}
+  }
+}
